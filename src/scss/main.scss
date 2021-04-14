@@ -1,0 +1,43 @@
+@import './utils/reset';
+@import './utils/vars';
+@import 'webix/webix.min.css';
+
+.sideBar {
+  background-color: rgba(255, 255, 0, 0);
+  border: none;
+  &_item {
+    border: none;
+  }
+}
+
+.greenbutton {
+  .webix_el_box {
+    color: green;
+  }
+
+  .wxi-check:before {
+    color: green;
+  }
+}
+
+.sideBarColor {
+  background-color: rgba(160, 172, 194, 0.452);
+}
+
+.tableHover {
+  background-color: #f4f5f9;
+}
+
+.deleteBtn {
+  cursor: pointer;
+}
+
+.upperList {
+  .upperListBtn {
+    float: right;
+  }
+
+  .young {
+    background: rgba(246, 248, 134, 0.555);
+  }
+}

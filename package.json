@@ -1,0 +1,61 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "for WA",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --open --port 8081",
+    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "lint": "npx eslint --fix ./src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roadToTheFuture/Test-task-WA-2021"
+  },
+  "keywords": [
+    "WA",
+    "task",
+    "2021",
+    "start"
+  ],
+  "author": "Ilya Safyan <isafyan@xbsoftware.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ilya-xbsoftware/sissues"
+  },
+  "browserslist": "> 0.25%, not dead",
+  "homepage": "https://github.com/ilya-xbsoftware/#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-env": "^7.11.5",
+    "@testing-library/jest-dom": "^5.11.5",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.2.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^4.3.0",
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-webpack-plugin": "^2.1.0",
+    "file-loader": "^6.1.0",
+    "html-webpack-plugin": "^4.5.0",
+    "jest": "^26.6.1",
+    "mini-css-extract-plugin": "^0.11.3",
+    "sass": "^1.26.12",
+    "sass-loader": "^10.0.2",
+    "webix": "^8.2.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.11.5",
+    "normalize.css": "^8.0.1"
+  }
+}
