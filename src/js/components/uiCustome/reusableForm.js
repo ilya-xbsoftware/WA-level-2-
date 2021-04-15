@@ -6,13 +6,12 @@ export default webix.protoUI({
     this.fields = config.fields;
     this.saveAction = config.saveAction;
     config.elements = this.createForm(config);
-    this.refresh();
   },
   createForm: function(){
     const self = this;
     const formFields = self.fields;
     const saveButton = {view: "button", value:"Save", css:"webix_primary", width:200, click: () => {
-      if(self.saveAction) {
+      if(self.saveAction && typeof self.saveAction === "function") {
         self.saveAction()
       }else{
         webix.message({type:"success", text:"The form is saved !"})
@@ -25,20 +24,18 @@ export default webix.protoUI({
     form.push(colsWithButtons);
 
     return form
-
   },
   fields_setter: function(parameters){
     return parameters;
   }
 }, webix.ui.form);
 
-
 function generateFormElements(formFields){
   const elements = [];
   
 
   formFields.forEach((field) => {
-    elements.push({ view:"text", label:`${field}`})
+    elements.push({ view:"text", label:`${field}`, name:`${field}`})
   })
 
   return elements;

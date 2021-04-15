@@ -1,20 +1,18 @@
-
 const webix = require("webix/webix.js");
 
 export default webix.protoUI({
   name:"toggleButton",
   $init: function(config){
-    config.value = config.states[0],
-    this.$view.className = "off",
+    config.value = "Off",
+    config.startState =  config.state;
+    config.lastState =  Object.keys(config.states).length;
+    this.$view.classList.add("Off"),
 
     this.attachEvent("onItemClick", function(){
-      const lastState = 3;
-      const startState = 0;
-    
       config.state += 1;
 
-      if(config.state === lastState){
-        config.state = startState
+      if(config.state === config.lastState){
+        config.state = config.startState
       }
   
       this.config.state = config.state;
@@ -27,15 +25,25 @@ export default webix.protoUI({
   }
 }, webix.ui.button);
 
-
 function setBtnColor(btn){
   const state = btn.config.state;
+  const states = btn.config.states;
+  const className = btn.$view.classList;
+  const firstState = states[0].toLowerCase();
+  const secondState = states[1].toLowerCase();
+  const thirdState = states[2].toLowerCase();
 
   if(state === 0){
-    btn.$view.className = "off"
+    className.remove(`${secondState}`);  
+    className.remove(`${thirdState}`);
+    className.add(`${firstState}`);  
   }else if(state === 1){
-    btn.$view.className = "asc"
+    className.remove(`${firstState}`);  
+    className.remove(`${thirdState}`);
+    className.add(`${secondState}`);   
   }else if(state === 2){
-    btn.$view.className = "desc"
+    className.remove(`${secondState}`);  
+    className.remove(`${firstState}`);
+    className.add(`${thirdState}`);  
   }
 }
