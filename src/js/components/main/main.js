@@ -1,6 +1,8 @@
-import { DATA_USERS, COUNTRIES } from "../../data/data";
+import { DATA_USERS } from "../../data/data";
 import * as toggleButton from "../uiCustome/toggleButton";
+import * as reusableForm from "../uiCustome/reusableForm";
 
+const webix = require("webix/webix.js");
 const customButton = {
   view:"toggleButton", 
   width:100,
@@ -38,8 +40,17 @@ const listWithNames = {
   template:"#id#. #name#"
 }
 
-const form = {
-  view:"list", data:COUNTRIES, template:"#value#"
+const firstCustomeform = {
+  view:"reusableForm", 
+  fields:["Fname","Lname", "Address"], 
+  saveAction: function(){
+    webix.message('custome');
+  }
+}
+
+const secondCustomeform = {
+  view:"reusableForm", 
+  fields:["Address ","Phone", "Email"], 
 }
 
 const main = {
@@ -47,7 +58,12 @@ const main = {
     toolBar,
     listWithNames,
     {view:"resizer"},
-    form
+    {
+      cols:[
+        firstCustomeform,
+        secondCustomeform
+      ]
+    }
   ]
 }
 
