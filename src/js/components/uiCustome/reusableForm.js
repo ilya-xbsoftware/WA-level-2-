@@ -21,7 +21,7 @@ export default webix.protoUI({
   
   createForm: function(config){
     const formFields = config.fields;
-    const saveButton = {view: "button", value:"Save", css:"webix_primary", width:200, click: config.saveAction || this.defaults.saveAction };
+    const saveButton = {view: "button", value:"Save", css:"webix_primary", width:200, click: this._checkFunction(config.saveAction) || this.defaults.saveAction };
     const cancelButton = {view:"button", value:"Cancel", css:"webix_danger", width:200, click: this.defaults.cancelAction};
     const colsWithButtons = { cols:[cancelButton, {}, saveButton] };
 
@@ -31,6 +31,12 @@ export default webix.protoUI({
     return form
   },
 
+  _checkFunction(func){
+    if(typeof func === "function"){
+      return func
+    }
+    return false
+  },
   _generateFormElements(formFields){
     const elements = [];
     formFields.forEach((field) => {
@@ -40,3 +46,5 @@ export default webix.protoUI({
     return elements;
   }
 }, webix.ui.form);
+
+

@@ -4,45 +4,35 @@ export default webix.protoUI({
   name:"toggleButton",
   $init: function(config){
     config.value = "Off";
-    config.startState =  config.state;
-    config.lastState =  Object.keys(config.states).length;
-    this.$view.classList.add("Off"),
+    this.config.value = "Off";
+  
+    this.states = config.states;
+    this.state = config.state;
+    this.startState = config.state;
+    this.lastState =  Object.keys(this.states).length;
+    this.$view.classList.add("off");
 
     this.attachEvent("onItemClick", function(){
-      config.state += 1;
-
-      if(config.state === config.lastState){
-        config.state = config.startState
+      this.state += 1;
+      if(this.state === this.lastState){
+        this.state = this.startState
       }
-  
-      this.config.state = config.state;
-      this.config.value = this.config.states[config.state];
+
+      this.config.value = this.states[this.state];
       this.refresh();
 
-      this._setBtnColor(this);
-      this.callEvent("onStateChange", [this.config.state]);
+      this._setBtnColor();
+      this.callEvent("onStateChange", [this.state]);
     })
   },
-  _setBtnColor(btn){
-    const state = btn.config.state;
-    const states = btn.config.states;
-    const className = btn.$view.classList;
-    const firstState = states[0].toLowerCase();
-    const secondState = states[1].toLowerCase();
-    const thirdState = states[2].toLowerCase();
-  
-    if(state === 0){
-      className.remove(`${secondState}`);  
-      className.remove(`${thirdState}`);
-      className.add(`${firstState}`);  
-    }else if(state === 1){
-      className.remove(`${firstState}`);  
-      className.remove(`${thirdState}`);
-      className.add(`${secondState}`);   
-    }else if(state === 2){
-      className.remove(`${secondState}`);  
-      className.remove(`${firstState}`);
-      className.add(`${thirdState}`);  
-    }
+  _setBtnColor(){
+    const state = this.state;
+    const states = this.states;
+    const className = this.$view.classList;
+
+    Object.values(states).map((singleState)=>{
+      className.remove(singleState.toLowerCase());
+    });
+    className.add(states[state].toLowerCase());
   }
 }, webix.ui.button);
