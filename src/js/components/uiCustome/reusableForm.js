@@ -25,27 +25,18 @@ export default webix.protoUI({
     const cancelButton = {view:"button", value:"Cancel", css:"webix_danger", width:200, click: this.defaults.cancelAction};
     const colsWithButtons = { cols:[cancelButton, {}, saveButton] };
 
-    const form = this.generateFormElements(formFields);
+    const form = this._generateFormElements(formFields);
     form.push(colsWithButtons);
 
     return form
   },
 
-  generateFormElements(formFields){
+  _generateFormElements(formFields){
     const elements = [];
     formFields.forEach((field) => {
       elements.push({ view:"text", label:`${field}`, name:`${field}`})
     })
   
     return elements;
-  },
-
-  confirmMessage(){
-    webix.confirm({
-      title:"Are you sure ?",
-      ok:"Yes", 
-      cancel:"No",
-    });
   }
-
 }, webix.ui.form);

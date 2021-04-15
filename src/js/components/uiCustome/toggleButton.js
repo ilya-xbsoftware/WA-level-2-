@@ -19,11 +19,11 @@ export default webix.protoUI({
       this.config.value = this.config.states[config.state];
       this.refresh();
 
-      this.setBtnColor(this);
+      this._setBtnColor(this);
       this.callEvent("onStateChange", [this.config.state]);
     })
   },
-  setBtnColor(btn){
+  _setBtnColor(btn){
     const state = btn.config.state;
     const states = btn.config.states;
     const className = btn.$view.classList;
