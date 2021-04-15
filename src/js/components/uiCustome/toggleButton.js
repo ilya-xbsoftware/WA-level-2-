@@ -3,7 +3,7 @@ const webix = require("webix/webix.js");
 export default webix.protoUI({
   name:"toggleButton",
   $init: function(config){
-    config.value = "Off",
+    config.value = "Off";
     config.startState =  config.state;
     config.lastState =  Object.keys(config.states).length;
     this.$view.classList.add("Off"),
@@ -19,31 +19,30 @@ export default webix.protoUI({
       this.config.value = this.config.states[config.state];
       this.refresh();
 
-      setBtnColor(this);
+      this.setBtnColor(this);
       this.callEvent("onStateChange", [this.config.state]);
     })
+  },
+  setBtnColor(btn){
+    const state = btn.config.state;
+    const states = btn.config.states;
+    const className = btn.$view.classList;
+    const firstState = states[0].toLowerCase();
+    const secondState = states[1].toLowerCase();
+    const thirdState = states[2].toLowerCase();
+  
+    if(state === 0){
+      className.remove(`${secondState}`);  
+      className.remove(`${thirdState}`);
+      className.add(`${firstState}`);  
+    }else if(state === 1){
+      className.remove(`${firstState}`);  
+      className.remove(`${thirdState}`);
+      className.add(`${secondState}`);   
+    }else if(state === 2){
+      className.remove(`${secondState}`);  
+      className.remove(`${firstState}`);
+      className.add(`${thirdState}`);  
+    }
   }
 }, webix.ui.button);
-
-function setBtnColor(btn){
-  const state = btn.config.state;
-  const states = btn.config.states;
-  const className = btn.$view.classList;
-  const firstState = states[0].toLowerCase();
-  const secondState = states[1].toLowerCase();
-  const thirdState = states[2].toLowerCase();
-
-  if(state === 0){
-    className.remove(`${secondState}`);  
-    className.remove(`${thirdState}`);
-    className.add(`${firstState}`);  
-  }else if(state === 1){
-    className.remove(`${firstState}`);  
-    className.remove(`${thirdState}`);
-    className.add(`${secondState}`);   
-  }else if(state === 2){
-    className.remove(`${secondState}`);  
-    className.remove(`${firstState}`);
-    className.add(`${thirdState}`);  
-  }
-}
