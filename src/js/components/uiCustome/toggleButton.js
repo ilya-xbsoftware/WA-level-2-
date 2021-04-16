@@ -4,7 +4,6 @@ export default webix.protoUI({
   name:"toggleButton",
   $init: function(config){
     config.value = "Off";
-    this.config.value = "Off";
   
     this.states = config.states;
     this.state = config.state;
