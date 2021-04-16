@@ -45,7 +45,7 @@ const firstCustomeform = {
   fields:["Fname","Lname", "Address"], 
   saveAction: function(){
     webix.message('custome');
-  }
+  },
 }
 
 const secondCustomeform = {
